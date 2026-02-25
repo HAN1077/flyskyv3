@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fly Sky Printing | Bangi Selangor</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+scroll-behavior:smooth;
+}
+
+body{
+background:#0f0f0f;
+color:white;
+}
+
+header{
+background:black;
+padding:15px 8%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+position:sticky;
+top:0;
+z-index:1000;
+border-bottom:2px solid #ff2d2d;
+}
+
+header h1{
+color:#ff2d2d;
+}
+
+.cart-btn{
+background:#ff2d2d;
+padding:8px 15px;
+border-radius:20px;
+}
+
+.hero{
+height:85vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+background:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.9)),
+url('https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da');
+background-size:cover;
+background-position:center;
+transition: background 1s ease-in-out;
+}
+
+.hero h2{
+font-size:60px;
+color:#ff2d2d;
+}
+
+.hero p{
+margin-top:15px;
+color:#ccc;
+}
+
+section{
+padding:80px 8%;
+}
+
+h2{
+text-align:center;
+margin-bottom:40px;
+color:#ff2d2d;
+font-size:32px;
+}
+
+.products,.materials{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+}
+
+.card{
+background:#1a1a1a;
+padding:25px;
+border-radius:15px;
+transition:0.6s;
+opacity:0;
+transform:translateY(40px);
+}
+
+.card.show{
+opacity:1;
+transform:translateY(0);
+}
+
+.card:hover{
+transform:translateY(-10px);
+box-shadow:0 0 25px rgba(255,0,0,0.6);
+}
+
+.card img{
+width:100%;
+height:180px;
+object-fit:cover;
+border-radius:10px;
+margin-bottom:15px;
+}
+
+button{
+padding:8px 15px;
+margin-top:10px;
+border:none;
+border-radius:20px;
+background:#ff2d2d;
+color:white;
+cursor:pointer;
+font-weight:600;
+}
+
+button:hover{
+background:white;
+color:#ff2d2d;
+}
+
+.cart{
+background:#1a1a1a;
+padding:30px;
+border-radius:15px;
+}
+
+input{
+width:100%;
+padding:10px;
+margin:10px 0;
+border-radius:8px;
+border:none;
+}
+
+.total{
+font-size:22px;
+color:#ff2d2d;
+margin-top:10px;
+}
+
+.whatsapp-float{
+position:fixed;
+bottom:25px;
+right:25px;
+background:#25D366;
+color:white;
+padding:15px 20px;
+border-radius:50px;
+font-weight:600;
+text-decoration:none;
+z-index:9999;
+transition:0.3s;
+}
+
+.whatsapp-float:hover{
+transform:scale(1.1);
+background:#1ebe5d;
+}
+
+footer{
+background:black;
+padding:25px;
+text-align:center;
+color:#aaa;
+}
+
+iframe{
+width:100%;
+height:300px;
+border-radius:15px;
+}
+
+/* ===== MATERIAL POPUP ===== */
+.modal{
+display:none;
+position:fixed;
+z-index:99999;
+left:0;
+top:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.85);
+justify-content:center;
+align-items:center;
+}
+
+.modal-box{
+background:#1c1c1c;
+padding:25px;
+border-radius:15px;
+width:90%;
+max-width:520px;
+animation:pop 0.3s ease;
+}
+
+.modal-box h3{
+color:#ff2d2d;
+margin-bottom:15px;
+}
+
+.material-row{
+background:#222;
+padding:12px;
+margin-bottom:10px;
+border-radius:10px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.material-row a{
+font-size:12px;
+color:cyan;
+text-decoration:none;
+}
+
+.close-modal{
+background:#444;
+width:100%;
+margin-top:10px;
+}
+
+@keyframes pop{
+from{transform:scale(0.8);opacity:0;}
+to{transform:scale(1);opacity:1;}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Fly Sky Printing</h1>
+<div class="cart-btn">🛒 (<span id="cartCount">0</span>)</div>
+</header>
+
+<div class="hero">
+<h2>Premium Printing & Corporate Gifts</h2>
+<p>Based in Bangi, Selangor • Since 2024</p>
+</div>
+
+<section>
+<h2>About Company</h2>
+<div class="card">
+<p>
+Fly Sky Printing is a professional printing company located in Bangi, Selangor,
+established in 2024. We specialize in custom printing, corporate gifts,
+event merchandise and promotional materials.
+</p>
+<br>
+<p>
+We provide fast turnaround, premium materials and special bulk pricing
+for corporate, school and organization orders across Malaysia.
+</p>
+</div>
+</section>
+
+<section>
+<h2>Our Products</h2>
+<div class="products">
+
+<div class="card">
+<h3>T-Shirt Printing</h3>
+<p>Event shirts, company uniform & streetwear merch.</p>
+<button onclick="openMaterial('tshirt')">Start RM26</button>
+</div>
+
+<div class="card">
+<h3>Sticker Printing</h3>
+<p>Waterproof, glossy, transparent & die-cut.</p>
+<button onclick="openMaterial('sticker')">Start RM15</button>
+</div>
+
+<div class="card">
+<h3>Business Card</h3>
+<p>Premium artcard, spot UV & embossed.</p>
+<button onclick="openMaterial('businesscard')">Start RM45</button>
+</div>
+
+<div class="card">
+<h3>Banner & Bunting</h3>
+<p>Tarpaulin, roll-up, backdrop stand.</p>
+<button onclick="openMaterial('banner')">Start RM50</button>
+</div>
+
+<div class="card">
+<h3>Corporate Gifts</h3>
+<p>Mug, lanyard, plaque crystal, notebook.</p>
+<button onclick="openMaterial('gift')">Start RM5</button>
+</div>
+
+<div class="card">
+<h3>Booklet & Printing</h3>
+<p>Softcover, hardcover, thesis binding.</p>
+<button onclick="openMaterial('booklet')">Start RM15</button>
+</div>
+
+</div>
+</section>
+
+<section>
+<h2>Testimonials</h2>
+<div class="card">
+<p>"Very fast service and high quality printing. Highly recommended!"</p>
+<br>
+<p>— Ahmad, Bangi</p>
+</div>
+</section>
+
+<section>
+<h2>FAQ</h2>
+<div class="card">
+<p><b>Q: Do you accept bulk orders?</b></p>
+<p>Yes, we provide special discounts for orders above RM300 and RM500.</p>
+<br>
+<p><b>Q: How long is production time?</b></p>
+<p>Usually 2-5 working days depending on quantity.</p>
+</div>
+</section>
+
+<section>
+<h2>Our Location</h2>
+<iframe src="https://maps.google.com/maps?q=Bangi%20Selangor&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe>
+</section>
+
+<section>
+<div class="cart">
+<h2>Checkout</h2>
+<div id="cartItems"></div>
+<div class="total">Total: RM <span id="total">0</span></div>
+<input type="text" id="name" placeholder="Your Name">
+<input type="text" id="phone" placeholder="Phone Number">
+<button onclick="checkout()">Confirm Order via WhatsApp</button>
+</div>
+</section>
+
+<footer>
+📍 Bangi, Selangor | 📞 014-2200493 <br>
+© 2026 Fly Sky Printing
+</footer>
+
+<a href="https://wa.me/60142200493?text=Hi%20Fly%20Sky%20Printing,%20I%20want%20more%20info."
+class="whatsapp-float" target="_blank">
+💬 WhatsApp
+</a>
+
+<!-- MATERIAL POPUP -->
+<div class="modal" id="materialModal">
+<div class="modal-box">
+<h3>Select Material & Market Price</h3>
+<div id="materialContent"></div>
+<button class="close-modal" onclick="closeMaterial()">Close</button>
+</div>
+</div>
+
+<script>
+let cart=[];
+
+// ===== CART FUNCTIONS =====
+function addToCart(product,price){
+let exist=cart.find(i=>i.product===product);
+if(exist){exist.qty++;}
+else{cart.push({product,price,qty:1});}
+updateCart();
+}
+
+function changeQty(product,val){
+let item=cart.find(i=>i.product===product);
+if(!item)return;
+item.qty+=val;
+if(item.qty<=0){cart=cart.filter(i=>i.product!==product);}
+updateCart();
+}
+
+function updateCart(){
+let total=0;
+let html="";
+cart.forEach(item=>{
+let sub=item.qty*item.price;
+total+=sub;
+html+=`
+<p>${item.product} (RM${item.price})</p>
+<button onclick="changeQty('${item.product}',1)">+</button>
+<button onclick="changeQty('${item.product}',-1)">-</button>
+Qty: ${item.qty} | RM${sub}
+<hr>
+`;
+});
+
+let discount=0;
+if(total>=500){discount=total*0.1;}
+else if(total>=300){discount=total*0.05;}
+
+let finalTotal=total-discount;
+
+if(discount>0){
+html+=`<p style="color:lime;">Bulk Discount: -RM${discount.toFixed(2)}</p>`;
+}
+
+document.getElementById("cartItems").innerHTML=html;
+document.getElementById("total").innerText=finalTotal.toFixed(2);
+document.getElementById("cartCount").innerText=
+cart.reduce((a,b)=>a+b.qty,0);
+}
+
+function checkout(){
+if(cart.length===0){alert("Cart kosong!");return;}
+
+let name=document.getElementById("name").value;
+let phone=document.getElementById("phone").value;
+let total=document.getElementById("total").innerText;
+let items=cart.map(i=>`${i.product} (${i.qty})`).join(", ");
+
+let message=`Hi Fly Sky Printing,%0AName: ${name}%0APhone: ${phone}%0AOrder: ${items}%0ATotal: RM${total}`;
+
+window.open(`https://wa.me/60142200493?text=${message}`);
+}
+
+// ===== POPUP MATERIAL FUNCTIONS =====
+function openMaterial(type){
+
+let market = {
+
+tshirt:[
+{n:"Cotton 100%",p:26,l:"https://www.google.com/search?q=cotton+tshirt+printing"},
+{n:"Microfiber Sport",p:30,l:"https://www.google.com/search?q=microfiber+tshirt+printing"},
+{n:"Oversize Premium",p:38,l:"https://www.google.com/search?q=oversize+tshirt+printing+malaysia"}
+],
+
+sticker:[
+{n:"Mirrorcoat",p:15,l:"https://www.google.com/search?q=mirrorcoat+sticker+printing"},
+{n:"PVC Waterproof",p:20,l:"https://www.google.com/search?q=pvc+sticker+waterproof"},
+{n:"Transparent Clear",p:23,l:"https://www.google.com/search?q=transparent+sticker+printing"}
+],
+
+businesscard:[
+{n:"260gsm Artcard",p:45,l:"https://www.google.com/search?q=260gsm+business+card"},
+{n:"310gsm Premium",p:55,l:"https://www.google.com/search?q=310gsm+business+card"},
+{n:"Spot UV Finishing",p:75,l:"https://www.google.com/search?q=spot+uv+business+card"}
+],
+
+banner:[
+{n:"Tarpaulin 380gsm",p:50,l:"https://www.google.com/search?q=tarpaulin+banner+printing"},
+{n:"Backdrop Stand",p:120,l:"https://www.google.com/search?q=backdrop+stand+printing"},
+],
+
+gift:[
+{n:"Custom Mug",p:18,l:"https://www.google.com/search?q=custom+mug+printing"},
+{n:"Lanyard Polyester",p:5,l:"https://www.google.com/search?q=custom+lanyard+printing"},
+],
+
+booklet:[
+{n:"A4 Softcover",p:15,l:"https://www.google.com/search?q=a4+booklet+printing"},
+{n:"Hardcover Binding",p:35,l:"https://www.google.com/search?q=hardcover+thesis+binding"},
+]
+
+};
+
+let html="";
+market[type].forEach(item=>{
+html+=`
+<div class="material-row">
+<div>
+<b>${item.n}</b><br>
+RM${item.p}<br>
+<a href="${item.l}" target="_blank">View Sample</a>
+</div>
+<button onclick="selectMaterial('${item.n}',${item.p})">Add</button>
+</div>
+`;
+});
+
+document.getElementById("materialContent").innerHTML=html;
+document.getElementById("materialModal").style.display="flex";
+}
+
+function selectMaterial(name,price){
+addToCart(name,price);
+closeMaterial();
+}
+
+function closeMaterial(){
+document.getElementById("materialModal").style.display="none";
+}
+
+// ===== SCROLL ANIMATION =====
+window.addEventListener("scroll",()=>{
+document.querySelectorAll(".card").forEach(card=>{
+if(card.getBoundingClientRect().top<window.innerHeight-100){
+card.classList.add("show");
+}
+});
+});
+
+// ===== HERO SLIDESHOW =====
+const hero = document.querySelector('.hero');
+const heroImages = [
+  'https://images.unsplash.com/photo-1593642634443-44adaa06623a?auto=format&fit=crop&w=1600&q=80', // printing machine
+  'https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da', // asal
+  'https://images.unsplash.com/photo-1581091870625-d3e8a1d5b97e', // printer close-up
+  'https://images.unsplash.com/photo-1612197521113-0a6fa21c8c8f', // colorful prints
+];
+
+let currentHero = 0;
+
+function changeHero(){
+  currentHero = (currentHero + 1) % heroImages.length;
+  hero.style.background = `linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url('${heroImages[currentHero]}') center/cover no-repeat`;
+}
+
+// Tukar gambar setiap 5 saat
+setInterval(changeHero, 5000);
+</script>
+
+</body>
+</html>
